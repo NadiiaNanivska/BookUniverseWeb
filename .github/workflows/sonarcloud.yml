@@ -41,13 +41,13 @@ jobs:
         shell: powershell
         run: dotnet tool install --global coverlet.console
       - name: Test Code Coverage
-        run: dotnet test ./BookUniverseProject/BookUniverse.XUnitTests/BookUniverse.XUnitTests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage/coverage.xml /d:sonar.coverage.exclusions="**/Program.cs"
+        run: dotnet test ./BookUniverseProject/BookUniverse.XUnitTests/BookUniverse.XUnitTests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage/coverage.xml
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"NadiiaNanivska_BookUniverseWeb" /o:"bookuniverseweb" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportPaths="./coverage/coverage.xml"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"NadiiaNanivska_BookUniverseWeb" /o:"bookuniverseweb" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportPaths="./coverage/coverage.xml" /d:sonar.coverage.exclusions="**/Program.cs"
           dotnet build ./BookUniverseProject/BookUniverseProject.sln --configuration Release
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
