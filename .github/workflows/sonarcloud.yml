@@ -41,7 +41,7 @@ jobs:
         shell: powershell
         run: dotnet tool install --global coverlet.console
       - name: Test Code Coverage
-        run: dotnet test ./BookUniverseProject/BookUniverse.XUnitTests/BookUniverse.XUnitTests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage/coverage.xml /d:sonar.coverage.exclusions="**/Program.cs/**/*"
+        run: dotnet test ./BookUniverseProject/BookUniverse.XUnitTests/BookUniverse.XUnitTests.csproj --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage/coverage.xml /d:sonar.coverage.exclusions="**/Program.cs"
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
