@@ -1,5 +1,6 @@
 ﻿using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Persistence;
+using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,11 @@ namespace BookUniverse.Web.Extensions
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<DatabaseContext>(opt =>
             opt.UseNpgsql(configuration.GetConnectionString("DbConnectionString"))); 
+        }
+
+        public static void AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         public static async Task IdentityConfiguration(this IServiceCollection services)
