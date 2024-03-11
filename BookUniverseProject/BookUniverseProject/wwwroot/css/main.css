@@ -14,7 +14,7 @@ body {
 }
 
 .site-description {
-    font-size: 1.2rem; 
+    font-size: 0.8rem; 
     color: black;
     text-align: center;
 }
@@ -54,7 +54,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     color: white;
-    font-size: 1.2rem; 
+    font-size: 0.8rem; 
 }
 
 .form-control:focus {
@@ -62,21 +62,21 @@ body {
 }
 
 .registration-heading {
-    font-size: 3.5rem; 
+    font-size: 2.5rem; 
     margin-bottom: 1.35rem;
     color: black;
     text-align: center;
 }
 
 .registration-subheading {
-    font-size: 1.5rem; 
+    font-size: 1rem; 
     margin-bottom: 2.025rem;
     color: black;
     text-align: center;
 }
 
 .main-subheading {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 2.025rem;
     color: black;
     text-align: center;
@@ -86,7 +86,7 @@ body {
 .form-label {
     font-weight: bold;
     color: black;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
 }
 
 .form-control-lg {
