@@ -9,13 +9,13 @@ body {
     background-size: cover; 
     background-position: center;
     height: 48vh;
-    border-radius: 10px; 
+    border-radius: 1vh; 
     vertical-align: center;
 }
 
 .site-description {
     font-size: 1.2rem; 
-    color: #000000;
+    color: black;
     text-align: center;
 }
 
@@ -27,33 +27,33 @@ body {
 .main-form {
     background-color: rgba(255, 255, 255, 0.8); 
     width: 90%; 
-    max-width: 1300px; 
+    max-width: 120.5vh; 
     height: 60vh;
     margin: 10% auto;
     padding: 3vw;
     border: 1px solid #ccc;
-    border-radius: 15px;
+    border-radius: 1.5vh;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: #fff;
+    color: white;
 }
 
 .registration-form {
     background-color: rgba(255, 255, 255, 0.8);
     width: 90%; 
-    max-width: 900px; 
+    max-width: 84vh; 
     height: 60vh;
     margin: 10% auto;
     padding: 3vw;
     border: 1px solid #ccc;
-    border-radius: 15px; 
+    border-radius: 1.5vh; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    color: #fff;
+    color: white;
     font-size: 1.2rem; 
 }
 
@@ -63,39 +63,39 @@ body {
 
 .registration-heading {
     font-size: 3.5rem; 
-    margin-bottom: 20px;
-    color: #000000;
+    margin-bottom: 2vh;
+    color: black;
     text-align: center;
 }
 
 .registration-subheading {
     font-size: 1.5rem; 
-    margin-bottom: 30px;
-    color: #000000;
+    margin-bottom: 3vh;
+    color: black;
     text-align: center;
 }
 
 .main-subheading {
     font-size: 1.5rem;
-    margin-bottom: 30px;
-    color: #000000;
+    margin-bottom: 3vh;
+    color: black;
     text-align: center;
-    width: 300px;
+    width: 28vh;
 }
 
 .form-label {
     font-weight: bold;
-    color: #000000;
+    color: black;
     font-size: 1.2rem;
 }
 
 .form-control-lg {
-    border-radius: 10px; 
+    border-radius: 1vh; 
 }
 
 .btn.btn-outline-secondary {
-    width: 250px; 
+    width: 24vh; 
     margin-top: 3vh;
-    border-radius: 10px; 
+    border-radius: 1vh; 
     font-size: 1.2rem;
 }
