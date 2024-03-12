@@ -5,56 +5,49 @@ body {
 }
 
 .main-image-container {
-    background-image: url("images/bookuni.jpg"); 
-    background-size: cover; 
+    background-image: url("images/bookuni.jpg");
+    background-size: cover;
     background-position: center;
-    height: 32.4rem;
-    border-radius: 0.675rem; 
+    height: 24rem; /* «меншено з 32.4rem */
+    border-radius: 0.5rem; /* «меншено з 0.675rem */
     vertical-align: center;
 }
 
 .site-description {
-    font-size: 0.8rem; 
+    font-size: 1rem; /* «меншено з 0.8rem */
     color: black;
     text-align: center;
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.8); 
-    height: 3.375rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 2.5rem; /* «меншено з 3.375rem */
 }
 
 .main-form {
-    background-color: rgba(255, 255, 255, 0.8); 
-    width: 90%; 
-    max-width: 81.338rem; 
-    height: 40.5rem;
-    margin: 10% auto;
-    padding: 3vw;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 80%; /* «меншено з 90% */
+    max-width: 60rem; /* «меншено з 81.338rem */
+    margin: 7% auto; /* «меншено з 10% */
+    padding: 2vw; /* «меншено з 3vw */
     border: 1px solid #ccc;
-    border-radius: 1.5vh;
+    border-radius: 1vh; /* «меншено з 1.5vh */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     color: white;
 }
 
 .registration-form {
     background-color: rgba(255, 255, 255, 0.8);
-    width: 90%; 
-    max-width: 56.7rem; 
-    height: 40.5rem;
-    margin: 10% auto;
-    padding: 3vw;
+    width: 80%; /* «меншено з 90% */
+    max-width: 42rem; /* «меншено з 56.7rem */
+    height: 30rem;
+    margin: 5% auto; /* «меншено з 10% */
+    padding: 2vw; /* «меншено з 3vw */
     border: 1px solid #ccc;
-    border-radius: 1.012rem; 
+    border-radius: 0.75rem; /* «меншено з 1.012rem */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     color: white;
-    font-size: 0.8rem; 
+    font-size: 0.7rem; /* «меншено з 0.8rem */
 }
 
 .form-control:focus {
@@ -62,40 +55,40 @@ body {
 }
 
 .registration-heading {
-    font-size: 2.5rem; 
-    margin-bottom: 1.35rem;
+    font-size: 2rem; /* «меншено з 2.5rem */
+    margin-bottom: 1rem; /* «меншено з 1.35rem */
     color: black;
     text-align: center;
 }
 
 .registration-subheading {
-    font-size: 1rem; 
-    margin-bottom: 2.025rem;
+    font-size: 0.9rem; /* «меншено з 1rem */
+    margin-bottom: 1.5rem; /* «меншено з 2.025rem */
     color: black;
     text-align: center;
 }
 
 .main-subheading {
-    font-size: 1rem;
-    margin-bottom: 2.025rem;
+    font-size: 0.9rem; /* «меншено з 1rem */
+    margin-bottom: 1.5rem; /* «меншено з 2.025rem */
     color: black;
     text-align: center;
-    width: 18.9rem;
+    width: 14rem; /* «меншено з 18.9rem */
 }
 
 .form-label {
     font-weight: bold;
     color: black;
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* «меншено з 0.8rem */
 }
 
 .form-control-lg {
-    border-radius: 0.675rem; 
+    border-radius: 0.5rem; /* «меншено з 0.675rem */
 }
 
 .btn.btn-outline-secondary {
-    width: 16.2rem; 
-    margin-top: 2.025rem;
-    border-radius: 0.675rem; 
-    font-size: 1.2rem;
+    width: 12rem; /* «меншено з 16.2rem */
+    margin-top: 1.5rem; /* «меншено з 2.025rem */
+    border-radius: 0.5rem; /* «меншено з 0.675rem */
+    font-size: 1rem; /* «меншено з 1.2rem */
 }
