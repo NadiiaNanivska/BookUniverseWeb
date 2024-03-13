@@ -18,6 +18,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_AuthLayout.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\background.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\5483995.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\bookuni.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\images\5483995.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\images\bookuni.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BookUniverse.Domain\BookUniverse.Domain.csproj" />
     <ProjectReference Include="..\BookUniverse.Infrastructure\BookUniverse.Infrastructure.csproj" />
   </ItemGroup>

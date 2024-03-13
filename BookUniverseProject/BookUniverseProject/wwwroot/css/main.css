@@ -1,0 +1,94 @@
+body {
+    background-image: url("images/5483995.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-image-container {
+    background-image: url("images/bookuni.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 24rem;
+    border-radius: 0.5rem; 
+    vertical-align: center;
+}
+
+.site-description {
+    font-size: 1rem;
+    color: black;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 2.5rem;
+}
+
+.main-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 80%; 
+    max-width: 60rem; 
+    margin: 7% auto;
+    padding: 2vw;
+    border: 1px solid #ccc;
+    border-radius: 1vh;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.registration-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 80%; 
+    max-width: 42rem; 
+    height: 30rem;
+    margin: 5% auto; 
+    padding: 2vw; 
+    border: 1px solid #ccc;
+    border-radius: 0.75rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-size: 0.7rem; 
+}
+
+.form-control:focus {
+    outline: none;
+}
+
+.registration-heading {
+    font-size: 2rem; 
+    margin-bottom: 1rem; 
+    color: black;
+    text-align: center;
+}
+
+.registration-subheading {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem; 
+    color: black;
+    text-align: center;
+}
+
+.main-subheading {
+    font-size: 0.9rem; 
+    margin-bottom: 1.5rem; 
+    color: black;
+    text-align: center;
+    width: 14rem; 
+}
+
+.form-label {
+    font-weight: bold;
+    color: black;
+    font-size: 0.7rem; 
+}
+
+.form-control-lg {
+    border-radius: 0.5rem; 
+}
+
+.btn.btn-outline-secondary {
+    width: 12rem; 
+    margin-top: 1.5rem; 
+    border-radius: 0.5rem; 
+    font-size: 1rem; 
+}
