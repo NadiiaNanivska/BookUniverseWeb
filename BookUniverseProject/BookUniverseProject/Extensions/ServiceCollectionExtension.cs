@@ -5,6 +5,7 @@ using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace BookUniverse.Web.Extensions
 {
@@ -23,6 +24,11 @@ namespace BookUniverse.Web.Extensions
 
         public static void AddServices(this IServiceCollection services)
         {
+            Assembly[] currentAssemblies = AppDomain.CurrentDomain.GetAssemblies(); 
+            Assembly applicationAssembly = typeof(LoggingPipelineBehavior<,>).Assembly;
+            services.AddAutoMapper(currentAssemblies);
+            services.AddMediatR(applicationAssembly);
+
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
         }
 
