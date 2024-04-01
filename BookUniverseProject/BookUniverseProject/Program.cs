@@ -8,8 +8,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDatabaseContext(builder.Configuration);
 await builder.Services.IdentityConfiguration();
+
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration));
+
+builder.Services.AddRepositories();
+builder.Services.AddServices();
 
 var app = builder.Build();
 

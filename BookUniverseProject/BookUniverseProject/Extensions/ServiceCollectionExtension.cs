@@ -1,6 +1,8 @@
-﻿using BookUniverse.Domain.Entities;
+﻿using BookUniverse.Application.Behaviours;
+using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Persistence;
 using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,11 @@ namespace BookUniverse.Web.Extensions
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+        }
+
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
         }
 
         public static async Task IdentityConfiguration(this IServiceCollection services)
