@@ -5,6 +5,7 @@ using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 namespace BookUniverse.Web.Extensions
@@ -48,6 +49,17 @@ namespace BookUniverse.Web.Extensions
                     await roleManager.CreateAsync(new IdentityRole(role));
                 }
             }
+        }
+
+        public static void AddSwaggerServices(this IServiceCollection services)
+        {
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc("v1", new OpenApiInfo { Title = "BookUniverseApi", Version = "v1" });
+
+                opt.CustomSchemaIds(x => x.FullName);
+            });
         }
     }
 }
