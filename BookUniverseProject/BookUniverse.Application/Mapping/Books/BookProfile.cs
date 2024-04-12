@@ -8,16 +8,9 @@
     {
         public BookProfile()
         {
-            CreateMap<AddBookDto, Book>()
-                .ForMember(dest => dest.CategoryId, opt => opt.Ignore())
-                .AfterMap((src, dest, opt) =>
-                {
-                    if (opt.Items.TryGetValue("CategoryId", out var categoryId))
-                    {
-                        dest.CategoryId = (int)categoryId;
-                    }
-                })
-                .ReverseMap();
+            CreateMap<Book, BookDto>().ReverseMap();
+
+            CreateMap<AddBookDto, Book>().ReverseMap();
         }
     }
 }
