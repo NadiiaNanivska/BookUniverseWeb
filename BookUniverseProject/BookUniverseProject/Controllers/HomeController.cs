@@ -22,12 +22,12 @@ namespace BookUniverseProject.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Registration()
         {
             return View();
         }
-        
+
         public IActionResult LogIn()
         {
             return View();
