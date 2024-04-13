@@ -3,21 +3,17 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
-using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
-using MediatR;
 
 namespace BookUniverseProject.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IMediator _mediator;
 
 
-        public HomeController(ILogger<HomeController> logger, IMediator mediator)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _mediator = mediator;
         }
         
         public async Task<IActionResult> MainPage()
@@ -36,16 +32,12 @@ namespace BookUniverseProject.Controllers
 
         private async Task<IEnumerable<BookDto>> GetAllBooks()
         {
-            var result = await _mediator.Send(new GetAllBooksQuery());
-            if (result.IsSuccess)
+            ActionResult<IEnumerable<BookDto>> res = HandleResult(await Mediator.Send(new GetAllBooksQuery()));
+            if (res.Result is OkObjectResult okObjectResult)
             {
-                return result.Value;
+                return (IEnumerable<BookDto>)okObjectResult.Value;
             }
-            else
-            {
-                _logger.LogError("Failed to fetch books: {Error}", result.Errors);
-                return Enumerable.Empty<BookDto>();
-            }
+            return Enumerable.Empty<BookDto>();
         }
 
         public IActionResult Index()
