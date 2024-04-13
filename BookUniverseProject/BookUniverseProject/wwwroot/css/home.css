@@ -1,0 +1,56 @@
+.table-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 90%;
+  height: 30rem;
+  max-width: 70rem;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2.5rem;
+  padding: 2vw;
+  border: 1px solid #ccc;
+  border-radius: 1vh;
+  box-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.data-grid table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.25rem;
+}
+
+.data-grid th,
+.data-grid td {
+  padding: 0.4rem;
+  text-align: left;
+}
+
+.data-grid th {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  font-weight: bold;
+}
+
+.data-grid td {
+  border: 1px solid #ddd;
+  color: black;
+}
+
+.data-grid th:first-child,
+.data-grid td:first-child {
+  padding-left: 1.25rem;
+}
+
+.data-grid th:last-child,
+.data-grid td:last-child {
+  padding-right: 1.25rem;
+}
+
+#prevBtn{
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+#nextBtn{
+  margin-bottom: 1rem;
+}
