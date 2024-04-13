@@ -11,60 +11,25 @@
             </div>
             <div class="data-grid">
                 <table  id="myTable">
+                    <thead>
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
-                        <th>NumberOfPages</th>
+                        <th>Number of Pages</th>
                         <th>Rating</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var book in ViewBag.Books)
+                    {
                     <tr>
-                        <td>Test2</td>
-                        <td>Test2</td>
-                        <td>345</td>
-                        <td>5</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.NumberOfPages</td>
+                        <td>@book.Rating</td>
                     </tr>
-                    <tr>
-                        <td>Test3</td>
-                        <td>Test3</td>
-                        <td>123</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Test4</td>
-                        <td>Test4</td>
-                        <td>442</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Test5</td>
-                        <td>Test5</td>
-                        <td>121</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Test5</td>
-                        <td>Test5</td>
-                        <td>121</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Test5</td>
-                        <td>Test5</td>
-                        <td>121</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Test5</td>
-                        <td>Test5</td>
-                        <td>121</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>Test5</td>
-                        <td>Test5</td>
-                        <td>121</td>
-                        <td>4</td>
-                    </tr>
+                    }
+                    </tbody>
                 </table>
             </div>
             <div class="pagination">

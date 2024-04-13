@@ -1,16 +1,52 @@
 ﻿using BookUniverseProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using BookUniverse.Application.DTOs.BookDTOs;
+using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
+using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
+using MediatR;
 
 namespace BookUniverseProject.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
+        }
+        
+        public async Task<IActionResult> MainPage()
+        {
+            var books = await GetAllBooks();
+            ViewBag.Books = books;
+            return View(books);
+        }
+        
+        public async Task<IActionResult> HomePage()
+        {
+            var books = await GetAllBooks();
+            ViewBag.Books = books;
+            return View(books);
+        }
+
+        private async Task<IEnumerable<BookDto>> GetAllBooks()
+        {
+            var result = await _mediator.Send(new GetAllBooksQuery());
+            if (result.IsSuccess)
+            {
+                return result.Value;
+            }
+            else
+            {
+                // Handle error scenario
+                _logger.LogError("Failed to fetch books: {Error}", result.Errors);
+                return Enumerable.Empty<BookDto>(); // Or handle error in a different way
+            }
         }
 
         public IActionResult Index()
@@ -29,16 +65,6 @@ namespace BookUniverseProject.Controllers
         }
 
         public IActionResult LogIn()
-        {
-            return View();
-        }
-        
-        public IActionResult HomePage()
-        {
-            return View();
-        }
-        
-        public IActionResult MainPage()
         {
             return View();
         }
