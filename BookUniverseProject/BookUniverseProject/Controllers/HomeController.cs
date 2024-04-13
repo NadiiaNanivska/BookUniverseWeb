@@ -43,9 +43,8 @@ namespace BookUniverseProject.Controllers
             }
             else
             {
-                // Handle error scenario
                 _logger.LogError("Failed to fetch books: {Error}", result.Errors);
-                return Enumerable.Empty<BookDto>(); // Or handle error in a different way
+                return Enumerable.Empty<BookDto>();
             }
         }
 

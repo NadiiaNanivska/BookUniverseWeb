@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var table = document.getElementById("myTable");
     var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
     var currentPage = 1;
-    var rowsPerPage = 8;
+    var rowsPerPage = 7;
     var totalPages = Math.ceil(rows.length / rowsPerPage);
 
     function showRows(page) {
