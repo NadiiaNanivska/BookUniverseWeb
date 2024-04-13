@@ -32,8 +32,8 @@ namespace BookUniverseProject.Controllers
 
         private async Task<IEnumerable<BookDto>> GetAllBooks()
         {
-            ActionResult<IEnumerable<BookDto>> res = HandleResult(await Mediator.Send(new GetAllBooksQuery()));
-            if (res.Result is OkObjectResult okObjectResult)
+            ActionResult<IEnumerable<BookDto>> allBooksResult = HandleResult(await Mediator.Send(new GetAllBooksQuery()));
+            if (allBooksResult.Result is OkObjectResult okObjectResult)
             {
                 return (IEnumerable<BookDto>)okObjectResult.Value;
             }
