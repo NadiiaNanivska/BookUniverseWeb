@@ -53,6 +53,11 @@ namespace BookUniverseProject.Controllers
             return View();
         }
 
+        public IActionResult UserPage()
+        {
+            return View("~/Views/Home/UserPage.cshtml");
+        }
+
         public IActionResult Privacy()
         {
             return View();

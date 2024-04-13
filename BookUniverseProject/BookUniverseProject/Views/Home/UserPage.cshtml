@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "User Page";
+    Layout = "~/Views/Shared/_MainPartial.cshtml";
+}
+
+<div id="app">
+    <div class="table-form">
+        <div class="content_user">
+            <div class="grid-container_user">
+
+                <!-- Header Section -->
+                <div class="header-section">
+                    <div class="header-title">
+                        <h1>Book Universe</h1>
+                    </div>
+                </div>
+
+                <div class="form_and_photo">
+
+                    <!-- Content Section -->
+                    <div class="content-section">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="editUsername" placeholder="Username">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="editEmail" placeholder="Email">
+                        </div>
+
+                        <button class="btn btn-outline-secondary" id="saveButton">Save Changes</button>
+                        <button class="btn btn-outline-secondary" id="changePasswordButton">Change Password</button>
+                        <button class="btn btn-outline-secondary" id="addBooksButton">Add Books</button>
+                    </div>
+
+                    <!-- Image Section -->
+                    <div class="image-section"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
