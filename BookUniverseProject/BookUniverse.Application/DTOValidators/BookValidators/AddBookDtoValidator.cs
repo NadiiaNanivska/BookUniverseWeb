@@ -29,7 +29,7 @@ namespace BookUniverse.Application.DTOValidators.BookValidators
             RuleFor(book => book.Path)
                 .NotEmpty();
 
-            RuleFor(book => book.CategoryName)
+            RuleFor(book => book.CategoryId)
                 .NotEmpty();
         }
     }
