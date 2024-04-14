@@ -8,10 +8,6 @@ namespace BookUniverseProject.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController()
-        {
-        }
-        
         public async Task<IActionResult> MainPage()
         {
             var books = await GetAllBooks();
