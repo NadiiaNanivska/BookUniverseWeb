@@ -19,17 +19,26 @@
 
                     <!-- Content Section -->
                     <div class="content-section">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="editUsername" placeholder="Username">
-                        </div>
 
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="editEmail" placeholder="Email">
+                            <div class="d-flex flex-column">
+                                <input type="text" class="form-control form-control-lg" id="editUsername" placeholder="Username">
+                                <div id="usernameValidationMessage" class="form-text text-danger"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <div class="d-flex flex-column">
+                                <input type="email" class="form-control form-control-lg" id="editEmail" placeholder="Email">
+                                <div id="emailValidationMessage" class="form-text text-danger"></div>
+                            </div>
                         </div>
 
-                        <button class="btn btn-outline-secondary" id="saveButton">Save Changes</button>
+
+                        <button class="btn btn-outline-secondary" id="saveButton" onclick="saveChangesInAccount()">Save Changes</button>
                         <button class="btn btn-outline-secondary" id="changePasswordButton">Change Password</button>
                         <button class="btn btn-outline-secondary" id="addBooksButton">Add Books</button>
+                       
                     </div>
 
                     <!-- Image Section -->
@@ -40,4 +49,6 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/userpage.js" asp-append-version="true"></script>
 
