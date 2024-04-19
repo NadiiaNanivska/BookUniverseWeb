@@ -13,6 +13,7 @@
                 <table  id="myTable">
                     <thead>
                     <tr>
+                        <th class="book-id">№</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Number of Pages</th>
@@ -22,12 +23,13 @@
                     <tbody>
                     @foreach (var book in ViewBag.Books)
                     {
-                    <tr>
-                        <td>@book.Title</td>
-                        <td>@book.Author</td>
-                        <td>@book.NumberOfPages</td>
-                        <td>@book.Rating</td>
-                    </tr>
+                        <tr>
+                            <td class="book-id">@book.Id</td>
+                            <td>@book.Title</td>
+                            <td>@book.Author</td>
+                            <td>@book.NumberOfPages</td>
+                            <td>@book.Rating</td>
+                        </tr>
                     }
                     </tbody>
                 </table>

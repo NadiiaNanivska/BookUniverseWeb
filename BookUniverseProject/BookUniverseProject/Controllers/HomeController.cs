@@ -3,23 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
-using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
-using MediatR;
+using BookUniverse.Application.MediatR.Books.Queries.GetBook;
 
 namespace BookUniverseProject.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IMediator _mediator;
-
-
-        public HomeController(ILogger<HomeController> logger, IMediator mediator)
-        {
-            _logger = logger;
-            _mediator = mediator;
-        }
-        
         public async Task<IActionResult> MainPage()
         {
             var books = await GetAllBooks();
@@ -36,16 +25,23 @@ namespace BookUniverseProject.Controllers
 
         private async Task<IEnumerable<BookDto>> GetAllBooks()
         {
-            var result = await _mediator.Send(new GetAllBooksQuery());
-            if (result.IsSuccess)
+            ActionResult<IEnumerable<BookDto>> allBooksResult = HandleResult(await Mediator.Send(new GetAllBooksQuery()));
+            if (allBooksResult.Result is OkObjectResult okObjectResult)
             {
-                return result.Value;
+                return (IEnumerable<BookDto>)okObjectResult.Value;
             }
-            else
+            return Enumerable.Empty<BookDto>();
+        }
+        
+        private async Task<BookDto> GetBook(int id)
+        {
+            ActionResult<BookDto> book = HandleResult(await Mediator.Send(new GetBookQuery(id)));
+            if (book.Result is OkObjectResult okObjectResult)
             {
-                _logger.LogError("Failed to fetch books: {Error}", result.Errors);
-                return Enumerable.Empty<BookDto>();
+                BookDto res = (BookDto)okObjectResult.Value;
+                return res;
             }
+            return null;
         }
 
         public IActionResult Index()
@@ -71,6 +67,14 @@ namespace BookUniverseProject.Controllers
         public IActionResult LogIn()
         {
             return View();
+        }
+
+        [Route("Home/BookPage/{id}")]
+        public async Task<IActionResult> BookPage(int id)
+        {
+            BookDto book = await GetBook(id);
+            ViewBag.Book = book;
+            return View(book);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

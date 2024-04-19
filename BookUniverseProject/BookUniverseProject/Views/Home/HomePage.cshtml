@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Main Page";
+    ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_MainPartial.cshtml";
 }
 
@@ -13,6 +13,7 @@
                 <table  id="myTable">
                     <thead>
                     <tr>
+                        <th class="book-id">№</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Number of Pages</th>
@@ -22,12 +23,13 @@
                     <tbody>
                     @foreach (var book in ViewBag.Books)
                     {
-                    <tr>
-                        <td>@book.Title</td>
-                        <td>@book.Author</td>
-                        <td>@book.NumberOfPages</td>
-                        <td>@book.Rating</td>
-                    </tr>
+                        <tr>
+                            <td class="book-id">@book.Id</td>
+                            <td>@book.Title</td>
+                            <td>@book.Author</td>
+                            <td>@book.NumberOfPages</td>
+                            <td>@book.Rating</td>
+                        </tr>
                     }
                     </tbody>
                 </table>
@@ -42,3 +44,21 @@
 
 <script src="~/js/home.js" asp-append-version="true"></script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var rows = document.querySelectorAll("#myTable tbody tr");
+        rows.forEach(function (row) {
+            row.addEventListener("click", function () {
+                var cells = this.getElementsByTagName("td");
+                var rowData = {
+                    id: parseInt(cells[0].innerText),
+                    title: cells[1].innerText,
+                    author: cells[2].innerText,
+                    numberOfPages: cells[3].innerText,
+                    rating: cells[4].innerText
+                };
+                window.location.href = '@Url.Action("BookPage", "Home")' + '/' + rowData.id;
+            });
+        });
+    });
+</script>
