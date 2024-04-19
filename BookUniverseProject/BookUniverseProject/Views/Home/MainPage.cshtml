@@ -44,3 +44,21 @@
 
 <script src="~/js/home.js" asp-append-version="true"></script>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var rows = document.querySelectorAll("#myTable tbody tr");
+        rows.forEach(function (row) {
+            row.addEventListener("click", function () {
+                var cells = this.getElementsByTagName("td");
+                var rowData = {
+                    id: parseInt(cells[0].innerText),
+                    title: cells[1].innerText,
+                    author: cells[2].innerText,
+                    numberOfPages: cells[3].innerText,
+                    rating: cells[4].innerText
+                };
+                window.location.href = '@Url.Action("BookPage", "Home")' + '/' + rowData.id;
+            });
+        });
+    });
+</script>

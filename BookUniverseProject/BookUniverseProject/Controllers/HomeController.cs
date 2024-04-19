@@ -63,6 +63,11 @@ namespace BookUniverseProject.Controllers
         {
             return View();
         }
+        
+        public IActionResult ForgotPassPage()
+        {
+            return View();
+        }
 
         [Route("Home/BookPage/{id}")]
         public async Task<IActionResult> BookPage(int id)
