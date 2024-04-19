@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
+using BookUniverse.Application.MediatR.Books.Queries.GetBook;
 
 namespace BookUniverseProject.Controllers
 {
@@ -31,6 +32,17 @@ namespace BookUniverseProject.Controllers
             }
             return Enumerable.Empty<BookDto>();
         }
+        
+        private async Task<BookDto> GetBook(int id)
+        {
+            ActionResult<BookDto> book = HandleResult(await Mediator.Send(new GetBookQuery(id)));
+            if (book.Result is OkObjectResult okObjectResult)
+            {
+                BookDto res = (BookDto)okObjectResult.Value;
+                return res;
+            }
+            return null;
+        }
 
         public IActionResult Index()
         {
@@ -50,6 +62,14 @@ namespace BookUniverseProject.Controllers
         public IActionResult LogIn()
         {
             return View();
+        }
+
+        [Route("Home/BookPage/{id}")]
+        public async Task<IActionResult> BookPage(int id)
+        {
+            BookDto book = await GetBook(id);
+            ViewBag.Book = book;
+            return View(book);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -54,3 +54,7 @@
 #nextBtn{
   margin-bottom: 1rem;
 }
+
+.book-id{
+  display: none;
+}
