@@ -15,7 +15,6 @@ namespace BookUniverseProject.Controllers
         {
             var books = await GetAllBooks();
             ViewBag.Books = books;
-            ViewBag.Categories = await GetAllCategories();
             return View(books);
         }
         
@@ -23,7 +22,6 @@ namespace BookUniverseProject.Controllers
         {
             var books = await GetAllBooks();
             ViewBag.Books = books;
-            ViewBag.Categories = await GetAllCategories();
             return View();
         }
 
@@ -35,16 +33,6 @@ namespace BookUniverseProject.Controllers
                 return (IEnumerable<BookDto>)okObjectResult.Value;
             }
             return Enumerable.Empty<BookDto>();
-        }
-
-        private async Task<IEnumerable<CategoryDto>> GetAllCategories()
-        {
-            ActionResult<IEnumerable<CategoryDto>> allCategoriesResult = HandleResult(await Mediator.Send(new GetAllCategoriesQuery()));
-            if (allCategoriesResult.Result is OkObjectResult okObjectResult)
-            {
-                return (IEnumerable<CategoryDto>)okObjectResult.Value;
-            }
-            return Enumerable.Empty<CategoryDto>();
         }
 
         private async Task<BookDto> GetBook(int id)
@@ -62,7 +50,6 @@ namespace BookUniverseProject.Controllers
         {
             BookDto book = await GetBook(id);
             ViewBag.Book = book;
-            ViewBag.Categories = await GetAllCategories();
             return View();
         }
 
