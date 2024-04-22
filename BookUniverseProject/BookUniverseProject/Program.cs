@@ -23,7 +23,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Auth/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -40,6 +40,6 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Registration}/{id?}");
+    pattern: "{controller=Auth}/{action=Registration}/{id?}");
 
 app.Run();
