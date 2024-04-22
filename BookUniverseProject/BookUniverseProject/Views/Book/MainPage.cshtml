@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Main Page";
     Layout = "~/Views/Shared/_MainPartial.cshtml";
 }
 
@@ -7,7 +7,7 @@
     <div class="table-form">
         <div class="content">
             <div class="registration-heading">
-                <h1>My library</h1>
+                <h1>All Books</h1>
             </div>
             <div class="data-grid">
                 <table  id="myTable">
@@ -57,7 +57,7 @@
                     numberOfPages: cells[3].innerText,
                     rating: cells[4].innerText
                 };
-                window.location.href = '@Url.Action("BookPage", "Home")' + '/' + rowData.id;
+                window.location.href = '@Url.Action("BookPage", "Book")' + '/' + rowData.id;
             });
         });
     });

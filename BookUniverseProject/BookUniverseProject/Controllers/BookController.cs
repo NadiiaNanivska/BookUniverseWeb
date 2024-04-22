@@ -1,4 +1,4 @@
-﻿using BookUniverseProject.Models;
+using BookUniverseProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
@@ -7,7 +7,7 @@ using BookUniverse.Application.MediatR.Books.Queries.GetBook;
 
 namespace BookUniverseProject.Controllers
 {
-    public class HomeController : BaseController
+    public class BookController : BaseController
     {
         public async Task<IActionResult> MainPage()
         {
@@ -43,33 +43,7 @@ namespace BookUniverseProject.Controllers
             }
             return null;
         }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Registration()
-        {
-            return View();
-        }
-
-        public IActionResult LogIn()
-        {
-            return View();
-        }
         
-        public IActionResult ForgotPassPage()
-        {
-            return View();
-        }
-
-        [Route("Home/BookPage/{id}")]
         public async Task<IActionResult> BookPage(int id)
         {
             BookDto book = await GetBook(id);
