@@ -8,9 +8,9 @@
         <div class="content">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="title registration-heading">@Model.Title</h2>
-                    <h3 class="author registration-subheading">@Model.Author</h3>
-                    <p class="description site-description">@Model.Description</p>
+                    <h2 class="title registration-heading">@ViewBag.Book.Title</h2>
+                    <h3 class="author registration-subheading">@ViewBag.Book.Author</h3>
+                    <p class="description site-description">@ViewBag.Book.Description</p>
                     <div class="actions">
                         <button id="readBtn" class="btn btn-outline-secondary">Read</button>
                         <button id="folderBtn" class="btn btn-outline-secondary" >Add to Folder</button>

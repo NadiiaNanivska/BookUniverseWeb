@@ -4,6 +4,8 @@ using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
 using BookUniverse.Application.MediatR.Books.Queries.GetBook;
+using BookUniverse.Application.DTOs.CategoryDTOs;
+using BookUniverse.Application.MediatR.Categories.Queries.GetAllCategories;
 
 namespace BookUniverseProject.Controllers
 {
@@ -13,6 +15,7 @@ namespace BookUniverseProject.Controllers
         {
             var books = await GetAllBooks();
             ViewBag.Books = books;
+            ViewBag.Categories = await GetAllCategories();
             return View(books);
         }
         
@@ -20,7 +23,8 @@ namespace BookUniverseProject.Controllers
         {
             var books = await GetAllBooks();
             ViewBag.Books = books;
-            return View(books);
+            ViewBag.Categories = await GetAllCategories();
+            return View();
         }
 
         private async Task<IEnumerable<BookDto>> GetAllBooks()
@@ -32,7 +36,17 @@ namespace BookUniverseProject.Controllers
             }
             return Enumerable.Empty<BookDto>();
         }
-        
+
+        private async Task<IEnumerable<CategoryDto>> GetAllCategories()
+        {
+            ActionResult<IEnumerable<CategoryDto>> allCategoriesResult = HandleResult(await Mediator.Send(new GetAllCategoriesQuery()));
+            if (allCategoriesResult.Result is OkObjectResult okObjectResult)
+            {
+                return (IEnumerable<CategoryDto>)okObjectResult.Value;
+            }
+            return Enumerable.Empty<CategoryDto>();
+        }
+
         private async Task<BookDto> GetBook(int id)
         {
             ActionResult<BookDto> book = HandleResult(await Mediator.Send(new GetBookQuery(id)));
@@ -74,7 +88,8 @@ namespace BookUniverseProject.Controllers
         {
             BookDto book = await GetBook(id);
             ViewBag.Book = book;
-            return View(book);
+            ViewBag.Categories = await GetAllCategories();
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
