@@ -9,5 +9,5 @@ using System.Threading.Tasks;
 
 namespace BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory
 {
-    public record GetAllBooksByCategoryQuery(int category) : IRequest<Result<IEnumerable<BookDto>>>;
+    public record GetAllBooksByCategoryQuery(int categoryId) : IRequest<Result<IEnumerable<BookDto>>>;
 }

@@ -26,7 +26,7 @@ namespace BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory
 
         public async Task<Result<IEnumerable<BookDto>>> Handle(GetAllBooksByCategoryQuery request, CancellationToken cancellationToken)
         {
-            IEnumerable<Book> filteredBooks = await _unitOfWork.BookRepository.GetAllAsync(book => book.CategoryId == request.category);
+            IEnumerable<Book> filteredBooks = await _unitOfWork.BookRepository.GetAllAsync(book => book.CategoryId == request.categoryId);
 
             if (filteredBooks is null)
             {
