@@ -4,10 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace BookUniverse.Application.Behaviours
 {
-    public class LoggingPipelineBehavior<TRequest, TResponse>
-    : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>
-    where TResponse : Result
+    public class LoggingPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : IRequest<TResponse>
     {
         private readonly ILogger<LoggingPipelineBehavior<TRequest, TResponse>> _logger;
 
@@ -16,10 +14,7 @@ namespace BookUniverse.Application.Behaviours
             _logger = logger;
         }
 
-        public async Task<TResponse> Handle(
-            TRequest request,
-            RequestHandlerDelegate<TResponse> next,
-            CancellationToken cancellationToken)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             _logger.LogInformation(
                 "Starting request {@RequestName}, {@DateTimeUtc}",
@@ -28,12 +23,12 @@ namespace BookUniverse.Application.Behaviours
 
             var result = await next();
 
-            if (result.IsFailed)
+            if (result is Result resultObject && resultObject.IsFailed)
             {
                 _logger.LogError(
                     "Request failure {@RequestName}, {@Error}, {@DateTimeUtc}",
                     typeof(TRequest).Name,
-                    result.Reasons,
+                    resultObject.Reasons,
                     DateTime.UtcNow);
             }
 
