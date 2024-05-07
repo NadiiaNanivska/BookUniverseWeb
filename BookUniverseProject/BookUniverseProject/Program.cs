@@ -33,6 +33,8 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseCookiePolicy();
+
 app.UseRouting();
 
 app.UseAuthorization();

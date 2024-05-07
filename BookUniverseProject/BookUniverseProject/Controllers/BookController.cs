@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BookUniverseProject.Controllers
 {
-    [Authorize]
     public class BookController : BaseController
     {
         public async Task<IActionResult> MainPage()
