@@ -1,9 +1,4 @@
-﻿﻿@using System.Collections.Generic
-@using System.Linq
-@using BookUniverse.Domain.Entities;
-@using BookUniverse.Web.Models.Authentication;
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Identity;
+﻿@using BookUniverse.Web.Models.Authentication;
 @model RegisterViewModel
 @{
 ViewData["Title"] = "Registration Page";
@@ -13,7 +8,7 @@ ViewData["Title"] = "Registration Page";
     <div class="registration-form">
         <h1 class="registration-heading">Book Universe</h1>
         <p class="registration-subheading">Sign up to create your account.</p>
-        <form id="signup-form" asp-action="Register" asp-controller="Auth" method="post">
+        <form id="signup-form" asp-action="SignUp" asp-controller="Auth" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
                 <input asp-for="Email" type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter your username" required>

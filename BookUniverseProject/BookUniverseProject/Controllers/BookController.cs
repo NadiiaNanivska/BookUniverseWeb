@@ -7,9 +7,11 @@ using BookUniverse.Application.MediatR.Books.Queries.GetBook;
 using BookUniverse.Application.DTOs.CategoryDTOs;
 using BookUniverse.Application.MediatR.Categories.Queries.GetAllCategories;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookUniverseProject.Controllers
 {
+    [Authorize]
     public class BookController : BaseController
     {
         public async Task<IActionResult> MainPage()
