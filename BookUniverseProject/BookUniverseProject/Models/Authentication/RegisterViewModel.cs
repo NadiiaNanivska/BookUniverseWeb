@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BookUniverse.Domain.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookUniverse.Web.Models.Authentication
 {
@@ -6,18 +7,15 @@ namespace BookUniverse.Web.Models.Authentication
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(UserValidationConstants.PASSWORD_DTO_MAX_LENGTH, ErrorMessage = UserValidationConstants.NOT_VALID_PASSWORD, MinimumLength = UserValidationConstants.PASSWORD_DTO_MIN_LENGTH)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = UserValidationConstants.PASSWORD_DOESNT_MATCH)]
         public string ConfirmPassword { get; set; } = "Nadia123!";
     }
 }
