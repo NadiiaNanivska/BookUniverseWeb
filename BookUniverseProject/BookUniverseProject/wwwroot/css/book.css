@@ -1,0 +1,22 @@
+#readBtn{
+  margin-right: 3rem;
+  margin-left: 2rem;
+}
+
+#favBtn{
+  margin-right: 3rem;
+  margin-left: 2rem;
+}
+
+.actions{
+  margin-top: 3rem;
+}
+
+.book-image-container {
+  background-image: url("images/bookuni2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 26.5rem;
+  border-radius: 0.5rem;
+  vertical-align: center;
+}

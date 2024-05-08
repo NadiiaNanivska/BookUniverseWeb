@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Book Page";
+    Layout = "~/Views/Shared/_MainPartial.cshtml";
+}
+
+<div id="app">
+    <div class="table-form">
+        <div class="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="title registration-heading">@ViewBag.Book.Title</h2>
+                    <h3 class="author registration-subheading">@ViewBag.Book.Author</h3>
+                    <p class="description site-description">@ViewBag.Book.Description</p>
+                    <div class="actions">
+                        <button id="readBtn" class="btn btn-outline-secondary">Read</button>
+                        <button id="folderBtn" class="btn btn-outline-secondary" >Add to Folder</button>
+                        <button id="favBtn" class="btn btn-outline-secondary" >Add to Favorites</button>
+                        <button id="librBtn" class="btn btn-outline-secondary" >Add to My Library</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="book-image-container"></div>
+                </div>
+            </div>
+            
+                
+        </div>
+    </div>
+</div>
+
+<script>
+</script>
+
+
