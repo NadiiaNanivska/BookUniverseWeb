@@ -7,7 +7,7 @@ using BookUniverse.Application.MediatR.Books.Queries.GetBook;
 
 namespace BookUniverseProject.Controllers
 {
-    public class HomeController : BaseController
+    public class BookController : BaseController
     {
         public async Task<IActionResult> MainPage()
         {
@@ -62,6 +62,11 @@ namespace BookUniverseProject.Controllers
         public IActionResult LogIn()
         {
             return View();
+        }
+        
+        public IActionResult UserPage()
+        {
+            return View("~/Views/Book/UserPage.cshtml");
         }
 
         [Route("Home/BookPage/{id}")]
