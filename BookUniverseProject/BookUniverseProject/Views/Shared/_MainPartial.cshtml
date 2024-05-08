@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var MenuModel = ViewBag.LayoutModel;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -32,11 +35,10 @@
                                 Categories
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <!-- Dropdown items go here -->
-                                <a class="dropdown-item">Category 1</a>
-                                <a class="dropdown-item">Category 2</a>
-                                <a class="dropdown-item">Category 3</a>
-                                <!-- Add more dropdown items as needed -->
+                                    @foreach (var category in MenuModel.Categories)
+                                    {
+                                        <a class="dropdown-item" asp-controller="Book" asp-action="FilterByCategory" asp-route-categoryId="@category.Id">@category.CategoryName</a>
+                                }
                             </div>
                         </li>
                     <li class="nav-item">
