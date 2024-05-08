@@ -66,7 +66,7 @@ namespace BookUniverseProject.Controllers
         
         public IActionResult UserPage()
         {
-            return View("~/Views/Book/UserPage.cshtml");
+            return View();
         }
 
         [Route("Home/BookPage/{id}")]
