@@ -1,4 +1,4 @@
-﻿using BookUniverseProject.Models;
+using BookUniverseProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
@@ -47,11 +47,6 @@ namespace BookUniverseProject.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult UserPage()
-        {
-            return View("~/Views/Home/UserPage.cshtml");
         }
 
         public IActionResult Privacy()

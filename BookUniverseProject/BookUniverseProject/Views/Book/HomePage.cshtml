@@ -57,7 +57,7 @@
                     numberOfPages: cells[3].innerText,
                     rating: cells[4].innerText
                 };
-                window.location.href = '@Url.Action("BookPage", "Home")' + '/' + rowData.id;
+                window.location.href = '@Url.Action("BookPage", "Book")' + '/' + rowData.id;
             });
         });
     });
