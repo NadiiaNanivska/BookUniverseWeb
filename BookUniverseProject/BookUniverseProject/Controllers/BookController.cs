@@ -4,10 +4,9 @@ using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
 using BookUniverse.Application.MediatR.Books.Queries.GetBook;
-using BookUniverse.Application.DTOs.CategoryDTOs;
-using BookUniverse.Application.MediatR.Categories.Queries.GetAllCategories;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory;
-using Microsoft.AspNetCore.Authorization;
+using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByUser;
+using System.Security.Claims;
 
 namespace BookUniverseProject.Controllers
 {
@@ -22,8 +21,14 @@ namespace BookUniverseProject.Controllers
         
         public async Task<IActionResult> HomePage()
         {
-            var books = await GetAllBooks();
-            ViewBag.Books = books;
+            var userClaims = HttpContext.User.Claims;
+            var userIdClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            if (userIdClaim != null)
+            {
+                var books = await GetAllBooksByUser(userIdClaim.Value);
+                ViewBag.Books = books;
+                return View();
+            }
             return View();
         }
 
@@ -49,6 +54,16 @@ namespace BookUniverseProject.Controllers
         {
             ActionResult<IEnumerable<BookDto>> allBooksResult = HandleResult(await Mediator.Send(new GetAllBooksQuery()));
             if (allBooksResult.Result is OkObjectResult okObjectResult)
+            {
+                return (IEnumerable<BookDto>)okObjectResult.Value;
+            }
+            return Enumerable.Empty<BookDto>();
+        }
+
+        private async Task<IEnumerable<BookDto>> GetAllBooksByUser(string userId)
+        {
+            ActionResult<IEnumerable<BookDto>> allUserBooksResult = HandleResult(await Mediator.Send(new GetAllBooksByUserQuery(userId)));
+            if (allUserBooksResult.Result is OkObjectResult okObjectResult)
             {
                 return (IEnumerable<BookDto>)okObjectResult.Value;
             }
