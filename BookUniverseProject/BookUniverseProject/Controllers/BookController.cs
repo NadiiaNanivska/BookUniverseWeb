@@ -4,9 +4,6 @@ using System.Diagnostics;
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
 using BookUniverse.Application.MediatR.Books.Queries.GetBook;
-using BookUniverse.Application.DTOs.CategoryDTOs;
-using BookUniverse.Application.MediatR.Categories.Queries.GetAllCategories;
-using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory;
 
 namespace BookUniverseProject.Controllers
 {
@@ -23,26 +20,8 @@ namespace BookUniverseProject.Controllers
         {
             var books = await GetAllBooks();
             ViewBag.Books = books;
-            return View();
+            return View(books);
         }
-
-        public async Task<IActionResult> FilterByCategory(int categoryId)
-        {
-            var filteredBooks = await GetAllBooksByCategory(categoryId);
-            ViewBag.Books = filteredBooks;
-            return View("HomePage");
-        }
-
-        private async Task<IEnumerable<BookDto>> GetAllBooksByCategory(int categoryId)
-        {
-            ActionResult<IEnumerable<BookDto>> allBooksResult = HandleResult(await Mediator.Send(new GetAllBooksByCategoryQuery(categoryId)));
-            if (allBooksResult.Result is OkObjectResult okObjectResult)
-            {
-                return (IEnumerable<BookDto>)okObjectResult.Value;
-            }
-            return Enumerable.Empty<BookDto>();
-        }
-
 
         private async Task<IEnumerable<BookDto>> GetAllBooks()
         {
@@ -53,7 +32,7 @@ namespace BookUniverseProject.Controllers
             }
             return Enumerable.Empty<BookDto>();
         }
-
+        
         private async Task<BookDto> GetBook(int id)
         {
             ActionResult<BookDto> book = HandleResult(await Mediator.Send(new GetBookQuery(id)));
@@ -64,12 +43,38 @@ namespace BookUniverseProject.Controllers
             }
             return null;
         }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Registration()
+        {
+            return View();
+        }
+
+        public IActionResult LogIn()
+        {
+            return View();
+        }
         
+        public IActionResult UserPage()
+        {
+            return View();
+        }
+
+        [Route("Home/BookPage/{id}")]
         public async Task<IActionResult> BookPage(int id)
         {
             BookDto book = await GetBook(id);
             ViewBag.Book = book;
-            return View();
+            return View(book);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
