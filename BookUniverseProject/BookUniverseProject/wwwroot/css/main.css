@@ -120,3 +120,7 @@ body {
 #forgotPassBtn{
     margin-left: 7rem;
 }
+
+.form-control {
+    margin-top: -0.4rem;
+}
