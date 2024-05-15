@@ -7,11 +7,36 @@ using BookUniverse.Application.MediatR.Books.Queries.GetBook;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByUser;
 using System.Security.Claims;
+using BookUniverse.Web.Models;
+using BookUniverse.Application.MediatR.SearchBooks.Queries.GetAllBooksByText;
 
 namespace BookUniverseProject.Controllers
 {
     public class BookController : BaseController
     {
+        public IActionResult SearchBookPage()
+        {
+            ViewBag.Books = Enumerable.Empty<string>();
+            ViewBag.Count = 0;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FindBooks(BookSearchModel model)
+        {
+            string searchQuery = $"\"{model.SearchQuery}\"";
+            if (ModelState.IsValid)
+            {
+                var foundBooks = await GetAllBooksByText(searchQuery);
+                ViewBag.Books = foundBooks;
+                ViewBag.Count = foundBooks.Count();
+                return View("SearchBookPage");
+            }
+
+            return RedirectToAction("SearchBookPage");
+        }
+
         public async Task<IActionResult> MainPage()
         {
             var books = await GetAllBooks();
@@ -37,6 +62,16 @@ namespace BookUniverseProject.Controllers
             var filteredBooks = await GetAllBooksByCategory(categoryId);
             ViewBag.Books = filteredBooks;
             return View("HomePage");
+        }
+
+        private async Task<IEnumerable<string>> GetAllBooksByText(string queryString)
+        {
+            ActionResult<IEnumerable<string>> allBooksResult = HandleResult(await Mediator.Send(new GetAllBooksByTextQuery(queryString)));
+            if (allBooksResult.Result is OkObjectResult okObjectResult)
+            {
+                return (IEnumerable<string>)okObjectResult.Value;
+            }
+            return Enumerable.Empty<string>();
         }
 
         private async Task<IEnumerable<BookDto>> GetAllBooksByCategory(int categoryId)

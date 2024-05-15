@@ -2,6 +2,7 @@
 using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Persistence;
 using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
+using BookUniverse.Web.Views;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,7 @@ namespace BookUniverse.Web.Extensions
             Assembly applicationAssembly = typeof(LoggingPipelineBehavior<,>).Assembly;
             services.AddAutoMapper(currentAssemblies);
             services.AddMediatR(applicationAssembly);
+            services.AddScoped<ISearchBook, SearchBook>();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
         }

@@ -1,0 +1,99 @@
+﻿@using BookUniverse.Web.Models;
+@{
+    ViewData["Title"] = "Search book page";
+    Layout = "~/Views/Shared/_MainPartial.cshtml";
+}
+@model BookSearchModel
+
+<div>
+<div class="main-form">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="search-book-heading">Search book</h1>
+        </div>
+    </div>
+        <form asp-action="FindBooks" asp-controller="Book" method="post">
+    <div class="row">
+        <div class="col-md-9">
+                <textarea asp-for="SearchQuery" class="form-control" rows="5" placeholder="Enter your search query"></textarea>
+        </div>
+        <div class="col-md-3">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+        </div>
+    </div>
+    </form>
+</div>
+
+<div class="main-form">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="search-book-heading">Result:</h2>
+                @if (ViewBag.count == 0)
+                {
+                    <blockquote class="blockquote">
+                        <p> No books found.</p>
+                    </blockquote>
+                }
+                else
+                {
+                <ul id="bookList" class="list-group list-group-flush">
+                    @foreach (var item in ViewBag.Books)
+                    {
+                        <li class="list-group-item resultBook">@item</li>
+                    }
+                </ul>
+                <nav aria-label="Page navigation">
+                    <ul id="pagination" class="pagination justify-content-center"></ul>
+                </nav>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log(@ViewBag.Count)
+        var bookList = document.getElementById("bookList");
+        var pagination = document.getElementById("pagination");
+        var itemsPerPage = 5;
+
+        function updatePagination(totalItems) {
+            pagination.innerHTML = "";
+            var totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            for (var i = 1; i <= totalPages; i++) {
+                var li = document.createElement("li");
+                li.classList.add("page-item");
+                var link = document.createElement("a");
+                link.classList.add("page-link");
+                link.href = "#";
+                link.innerText = i;
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    var page = parseInt(event.target.innerText);
+                    showPage(page);
+                });
+                li.appendChild(link);
+                pagination.appendChild(li);
+            }
+        }
+
+        function showPage(page) {
+            var startIndex = (page - 1) * itemsPerPage;
+            var endIndex = startIndex + itemsPerPage;
+            var lis = bookList.querySelectorAll(".resultBook");
+
+            lis.forEach(function (li, index) {
+                if (index >= startIndex && index < endIndex) {
+                    li.style.display = "block";
+                } else {
+                    li.style.display = "none";
+                }
+            });
+        }
+
+        updatePagination(@ViewBag.Count);
+        showPage(1);
+    });
+</script>
