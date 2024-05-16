@@ -35,10 +35,12 @@
         var password = document.getElementById("password").value.trim();
 
         if (username === "" || password === "") {
-            alert("Please fill in all fields.");
+            showModal("Please fill in all fields.");
             return;
         }
 
         window.location.href = '@Url.Action("HomePage", "Book")';
     }
 </script>
+
+@Html.Partial("/Views/Shared/ModalWindow.cshtml")
