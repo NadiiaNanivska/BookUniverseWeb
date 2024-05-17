@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookUniverse.Application.MediatR.SearchBooks.Queries.GetAllBooksByText;
+using BookUniverse.Domain.Common;
 using BookUniverse.Web.Views;
 using FluentResults;
 using Google.Apis.Books.v1.Data;
@@ -24,7 +25,7 @@ namespace BookUniverse.Application.MediatR.SearchBooks.Queries.GetAllBooksByQuer
 
             if (filteredBooks.Items is null)
             {
-                return Result.Fail(new Error("Nothing found"));
+                return Result.Fail(new Error(ResponseMessagesConstants.NOTHING_FOUND));
             }
 
             var booksInfo = new List<string>();

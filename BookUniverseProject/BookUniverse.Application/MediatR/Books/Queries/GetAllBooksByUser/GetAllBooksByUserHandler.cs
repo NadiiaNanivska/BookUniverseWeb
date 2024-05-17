@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookUniverse.Application.DTOs.BookDTOs;
+using BookUniverse.Domain.Common;
 using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
 using FluentResults;
@@ -24,7 +25,7 @@ namespace BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByUser
 
             if (filteredBooks is null)
             {
-                return Result.Fail(new Error("Nothing found in DB"));
+                return Result.Fail(new Error(ResponseMessagesConstants.NOTHING_FOUND));
             }
             return Result.Ok(_mapper.Map<IEnumerable<BookDto>>(filteredBooks));
         }
