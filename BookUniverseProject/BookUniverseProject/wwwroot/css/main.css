@@ -120,3 +120,12 @@ body {
 #forgotPassBtn{
     margin-left: 7rem;
 }
+
+.search-book-heading {
+    color: black;
+    padding-bottom: 0.8rem;
+}
+
+.blockquote {
+    color: dimgray;
+}
