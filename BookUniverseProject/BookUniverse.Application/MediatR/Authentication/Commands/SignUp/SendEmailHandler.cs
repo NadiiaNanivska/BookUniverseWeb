@@ -1,11 +1,7 @@
-﻿using BookUniverse.Application.Extensions;
-using BookUniverse.Domain.Entities;
-using BookUniverse.Infrastructure.Services.EmailSender;
+﻿using BookUniverse.Infrastructure.Services.EmailSender;
 using FluentResults;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Org.BouncyCastle.Asn1.Ocsp;
+using System.Text.Encodings.Web;
 
 namespace BookUniverse.Application.MediatR.Authentication.Commands.SignUp
 {
@@ -20,7 +16,7 @@ namespace BookUniverse.Application.MediatR.Authentication.Commands.SignUp
 
         public async Task<Result<Unit>> Handle(SendEmailCommand request, CancellationToken cancellationToken)
         {
-            bool isResultSuccess = await _emailSender.SendEmailConfirmationAsync(request.email, request.link);
+            bool isResultSuccess = await _emailSender.SendEmailAsync(request.email, request.subject, request.content);
             if (isResultSuccess)
             {
                 return Result.Ok(Unit.Value);

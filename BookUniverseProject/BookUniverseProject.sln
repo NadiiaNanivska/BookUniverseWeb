@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookUniverse.Web", "BookUniverseProject\BookUniverse.Web.csproj", "{9DB0035B-1772-4777-99B0-8CE12B3522C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookUniverse.Web", "BookUniverseProject\BookUniverse.Web.csproj", "{9DB0035B-1772-4777-99B0-8CE12B3522C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookUniverse.Domain", "BookUniverse.Domain\BookUniverse.Domain.csproj", "{C81C3E4E-5EF5-4F1B-AEA4-FE2D8B87C20F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookUniverse.Domain", "BookUniverse.Domain\BookUniverse.Domain.csproj", "{C81C3E4E-5EF5-4F1B-AEA4-FE2D8B87C20F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookUniverse.Application", "BookUniverse.Application\BookUniverse.Application.csproj", "{DCE926B5-2E12-47E3-826C-A5F9E65C3E95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookUniverse.Application", "BookUniverse.Application\BookUniverse.Application.csproj", "{DCE926B5-2E12-47E3-826C-A5F9E65C3E95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookUniverse.Infrastructure", "BookUniverse.Infrastructure\BookUniverse.Infrastructure.csproj", "{A5C62B89-50AB-462D-A8C0-E96653FB4E0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookUniverse.Infrastructure", "BookUniverse.Infrastructure\BookUniverse.Infrastructure.csproj", "{A5C62B89-50AB-462D-A8C0-E96653FB4E0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookUniverse.XUnitTests", "BookUniverse.XUnitTests\BookUniverse.XUnitTests.csproj", "{5059E78E-D88A-40CB-88C2-1A1676B85A07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookUniverse.XUnitTests", "BookUniverse.XUnitTests\BookUniverse.XUnitTests.csproj", "{5059E78E-D88A-40CB-88C2-1A1676B85A07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

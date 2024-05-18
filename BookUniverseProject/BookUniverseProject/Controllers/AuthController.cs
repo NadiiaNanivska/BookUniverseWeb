@@ -8,6 +8,7 @@ using BookUniverse.Web.Extensions;
 using BookUniverse.Infrastructure.Services.EmailSender;
 using BookUniverse.Application.MediatR.Authentication.Commands.SignUp;
 using BookUniverse.Application.DTOs.UserDTOs;
+using System.Text.Encodings.Web;
 
 namespace BookUniverseProject.Controllers
 {
@@ -66,7 +67,7 @@ namespace BookUniverseProject.Controllers
                     await _userManager.AddToRoleAsync(user, "user");
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id.ToString(), code, Request.Scheme);
-                    HandleResult(await Mediator.Send(new SendEmailCommand(user.Email, callbackUrl)));
+                    HandleResult(await Mediator.Send(new SendEmailCommand(user.Email, callbackUrl, "Confirm your email", $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>link</a>")));
                     return RedirectToLocal(returnUrl);
                 }
             }
@@ -118,6 +119,62 @@ namespace BookUniverseProject.Controllers
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    //return RedirectToAction(nameof(ForgotPasswordConfirmation));
+                }
+
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.ResetPasswordCallbackLink(user.Id.ToString(), code, Request.Scheme);
+                HandleResult(await Mediator.Send(new SendEmailCommand(user.Email, callbackUrl, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>")));
+                //return RedirectToAction(nameof(ForgotPasswordConfirmation));
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string code = null)
+        {
+            if (code == null)
+            {
+                throw new ApplicationException("A code must be supplied for password reset.");
+            }
+            var model = new ResetPasswordDto { Code = code };
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                return RedirectToAction(nameof(LogIn));
+            }
+            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(LogIn));
+            }
+            return View();
         }
 
         private IActionResult RedirectToLocal(string returnUrl)

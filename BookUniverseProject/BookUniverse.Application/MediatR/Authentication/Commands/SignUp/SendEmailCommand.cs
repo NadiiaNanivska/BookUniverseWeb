@@ -4,5 +4,5 @@ using MediatR;
 
 namespace BookUniverse.Application.MediatR.Authentication.Commands.SignUp
 {
-    public record SendEmailCommand(string email, string link) : IRequest<Result<Unit>>;
+    public record SendEmailCommand(string email, string link, string subject, string content) : IRequest<Result<Unit>>;
 }
