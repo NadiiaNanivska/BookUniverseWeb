@@ -87,7 +87,6 @@ namespace BookUniverseProject.Controllers
             return View();
         }
 
-        [Route("Home/BookPage/{id}")]
         public async Task<IActionResult> BookPage(int id)
         {
             BookDto book = await GetBook(id);
