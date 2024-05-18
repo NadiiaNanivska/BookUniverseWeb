@@ -93,6 +93,13 @@ namespace BookUniverseProject.Controllers
             ViewBag.Book = book;
             return View();
         }
+        
+        public async Task<IActionResult> ReadBookPage(int id)
+        {
+            BookDto book = await GetBook(id);
+            ViewBag.Book = book;
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
