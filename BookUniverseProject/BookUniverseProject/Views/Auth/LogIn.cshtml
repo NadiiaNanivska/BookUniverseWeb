@@ -1,5 +1,5 @@
-﻿@using BookUniverse.Web.Models.Authentication;
-@model LoginViewModel
+﻿@using BookUniverse.Application.DTOs.UserDTOs;
+@model LoginDto
 
 @{
     ViewData["Title"] = "LogIn Page";
@@ -12,7 +12,7 @@
         <form id="signin-form" asp-action="SignIn" asp-controller="Auth" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
-                <input asp-for="Email" type="text" id="username" class="form-control form-control-lg" placeholder="Enter your username" required>
+                <input asp-for="Username" type="text" id="username" class="form-control form-control-lg" placeholder="Enter your username" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>

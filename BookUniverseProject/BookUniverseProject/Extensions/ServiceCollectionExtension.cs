@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System.Net.Mail;
 using System.Net;
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace BookUniverse.Web.Extensions
 {
@@ -27,24 +28,17 @@ namespace BookUniverse.Web.Extensions
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
-        public static void AddServices(this IServiceCollection services)
+        public static void AddServices(this IServiceCollection services, ConfigurationManager configuration)
         {
             Assembly[] currentAssemblies = AppDomain.CurrentDomain.GetAssemblies(); 
             Assembly applicationAssembly = typeof(LoggingPipelineBehavior<,>).Assembly;
             services.AddAutoMapper(currentAssemblies);
             services.AddMediatR(applicationAssembly);
             services.AddScoped<ISearchBook, SearchBook>();
-
-            services.AddSingleton(new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("bookuniverse34@example.com", "bzonesslnbtpqgbu"),
-                DeliveryMethod = SmtpDeliveryMethod.Network
-        });
             services.AddTransient<IEmailSender, EmailSender>();
+
+            var emailConfig = configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
         }

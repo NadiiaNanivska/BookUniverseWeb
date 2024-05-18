@@ -9,6 +9,7 @@ using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByUser;
 using System.Security.Claims;
 using BookUniverse.Web.Models;
 using BookUniverse.Application.MediatR.SearchBooks.Queries.GetAllBooksByText;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookUniverseProject.Controllers
 {

@@ -1,15 +1,13 @@
 using System.Diagnostics;
-using System.Security.Claims;
 using BookUniverseProject.Models;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using BookUniverse.Web.Models.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using BookUniverse.Domain.Entities;
 using BookUniverse.Web.Extensions;
 using BookUniverse.Infrastructure.Services.EmailSender;
+using BookUniverse.Application.MediatR.Authentication.Commands.SignUp;
+using BookUniverse.Application.DTOs.UserDTOs;
 
 namespace BookUniverseProject.Controllers
 {
@@ -56,46 +54,53 @@ namespace BookUniverseProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignUp(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> SignUp(RegistrationDto model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
+            // Show errors
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Username, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "user");
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id.ToString(), code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    HandleResult(await Mediator.Send(new SendEmailCommand(user.Email, callbackUrl)));
                     return RedirectToLocal(returnUrl);
                 }
             }
-            return View(model);
+            return View("Registration");
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SignIn(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> SignIn(LoginDto model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return RedirectToLocal(returnUrl);
                 }
                 else
                 {
+                    // Show errors
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    return View("LogIn");
                 }
             }
+            return View("LogIn");
+        }
 
-            return View(model);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(LogIn), "Auth");
         }
 
         [HttpGet]
@@ -104,7 +109,7 @@ namespace BookUniverseProject.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(AuthController.Index), "Auth");
+                return RedirectToAction(nameof(SignIn), "Auth");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -125,11 +130,6 @@ namespace BookUniverseProject.Controllers
             {
                 return RedirectToAction(nameof(BookController.MainPage), "Book");
             }
-        }
-
-        internal static object ConfirmEmail()
-        {
-            throw new NotImplementedException();
         }
     }
 }
