@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BookUniverse.Application.MediatR.SearchBooks.Queries.GetAllBooksByText;
 using BookUniverse.Domain.Common;
-using BookUniverse.Web.Views;
+using BookUniverse.Infrastructure.Services.SearchBook;
 using FluentResults;
 using Google.Apis.Books.v1.Data;
 using MediatR;

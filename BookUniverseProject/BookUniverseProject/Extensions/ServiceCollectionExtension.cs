@@ -2,11 +2,14 @@
 using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Persistence;
 using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
-using BookUniverse.Web.Views;
+using BookUniverse.Infrastructure.Services.EmailSender;
+using BookUniverse.Infrastructure.Services.SearchBook;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Net.Mail;
+using System.Net;
 using System.Reflection;
 
 namespace BookUniverse.Web.Extensions
@@ -31,6 +34,17 @@ namespace BookUniverse.Web.Extensions
             services.AddAutoMapper(currentAssemblies);
             services.AddMediatR(applicationAssembly);
             services.AddScoped<ISearchBook, SearchBook>();
+
+            services.AddSingleton(new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("bookuniverse34@example.com", "bzonesslnbtpqgbu"),
+                DeliveryMethod = SmtpDeliveryMethod.Network
+        });
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehavior<,>));
         }

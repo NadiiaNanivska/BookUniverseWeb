@@ -2,7 +2,7 @@
 using Google.Apis.Books.v1.Data;
 using Google.Apis.Services;
 
-namespace BookUniverse.Web.Views
+namespace BookUniverse.Infrastructure.Services.SearchBook
 {
     public class SearchBook : ISearchBook
     {

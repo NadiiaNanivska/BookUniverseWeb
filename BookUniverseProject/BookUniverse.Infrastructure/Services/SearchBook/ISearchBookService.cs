@@ -1,4 +1,4 @@
-﻿namespace BookUniverse.Web.Views
+﻿namespace BookUniverse.Infrastructure.Services.SearchBook
 {
     using Google.Apis.Books.v1.Data;
 
