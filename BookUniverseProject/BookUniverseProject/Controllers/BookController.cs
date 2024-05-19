@@ -9,7 +9,8 @@ using BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByUser;
 using System.Security.Claims;
 using BookUniverse.Web.Models;
 using BookUniverse.Application.MediatR.SearchBooks.Queries.GetAllBooksByText;
-using Microsoft.AspNetCore.Authorization;
+using BookUniverse.Application.MediatR.UserBooks.Commands.CreateUserBook;
+using MediatR;
 
 namespace BookUniverseProject.Controllers
 {
@@ -47,8 +48,7 @@ namespace BookUniverseProject.Controllers
         
         public async Task<IActionResult> HomePage()
         {
-            var userClaims = HttpContext.User.Claims;
-            var userIdClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            Claim? userIdClaim = getUserIdFromCookie();
             if (userIdClaim != null)
             {
                 var books = await GetAllBooksByUser(userIdClaim.Value);
@@ -85,6 +85,26 @@ namespace BookUniverseProject.Controllers
             return Enumerable.Empty<BookDto>();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToLibrary(int id)
+        {
+            Claim? userIdClaim = getUserIdFromCookie();
+            UserBookDto newUserBook = new UserBookDto() { bookId = id, userId = userIdClaim.Value };
+            ActionResult<Unit> userBookResult = HandleResult(await Mediator.Send(new CreateUserBookCommand(newUserBook)));
+            if (userBookResult.Result is OkObjectResult)
+            {
+                return RedirectToAction("BookPage", new { id });
+            }
+            return RedirectToAction("BookPage", new { id });
+        }
+
+        private Claim? getUserIdFromCookie()
+        {
+            var userClaims = HttpContext.User.Claims;
+            var userIdClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+            return userIdClaim;
+        }
 
         private async Task<IEnumerable<BookDto>> GetAllBooks()
         {
