@@ -30,7 +30,9 @@
 
 <script>
     function redirectToReadPage() {
-        window.location.href = '@Url.Action("ReadBookPage", "Book")';
+        const baseUrl = '@Url.Action("ReadBookPage", "Book")';
+        const url = `${baseUrl}/${@ViewBag.Book.Id}`;
+        window.location.href = url;
     }
 
 </script>

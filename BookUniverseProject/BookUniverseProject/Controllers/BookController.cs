@@ -97,7 +97,7 @@ namespace BookUniverseProject.Controllers
         public async Task<IActionResult> ReadBookPage(int id)
         {
             BookDto book = await GetBook(id);
-            ViewBag.Book = book;
+            ViewBag.BookLink = book.Path + "/preview";
             return View();
         }
 
