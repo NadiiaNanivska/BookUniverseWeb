@@ -42,6 +42,15 @@ namespace BookUniverseProject.Controllers
             return View();
         }
 
+        public IActionResult ConfirmEmailPage()
+        {
+            return View();
+        }
+
+        public IActionResult ForgotPasswordConfirmationPage()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
@@ -110,7 +119,7 @@ namespace BookUniverseProject.Controllers
         {
             if (userId == null || code == null)
             {
-                return RedirectToAction(nameof(SignIn), "Auth");
+                return RedirectToAction(nameof(ConfirmEmailPage), "Auth");
             }
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
@@ -126,18 +135,19 @@ namespace BookUniverseProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordDto model)
         {
+            return RedirectToAction(nameof(ForgotPasswordConfirmationPage));
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
-                    //return RedirectToAction(nameof(ForgotPasswordConfirmation));
+                    return RedirectToAction(nameof(ForgotPasswordConfirmationPage));
                 }
 
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id.ToString(), code, Request.Scheme);
                 HandleResult(await Mediator.Send(new SendEmailCommand(user.Email, callbackUrl, "Reset Password", $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>")));
-                //return RedirectToAction(nameof(ForgotPasswordConfirmation));
+                return RedirectToAction(nameof(ForgotPasswordConfirmationPage));
             }
 
             return View(model);
