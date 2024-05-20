@@ -1,7 +1,6 @@
 using BookUniverse.Application.DTOs.CategoryDTOs;
 using BookUniverse.Application.MediatR.Categories.Queries.GetAllCategories;
 using BookUniverse.Application.MediatR.ResultVariations;
-using BookUniverse.Domain.Entities;
 using BookUniverse.Web.Models;
 using FluentResults;
 using MediatR;

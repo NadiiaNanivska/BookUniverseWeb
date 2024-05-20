@@ -129,3 +129,8 @@ body {
 .blockquote {
     color: dimgray;
 }
+}
+
+.form-control {
+    margin-top: -0.4rem;
+}

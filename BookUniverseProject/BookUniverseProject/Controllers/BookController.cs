@@ -136,7 +136,32 @@ namespace BookUniverseProject.Controllers
             }
             return null;
         }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult Registration()
+        {
+            return View();
+        }
+
+        public IActionResult LogIn()
+        {
+            return View();
+        }
         
+        public IActionResult UserPage()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> BookPage(int id)
         {
             BookDto book = await GetBook(id);

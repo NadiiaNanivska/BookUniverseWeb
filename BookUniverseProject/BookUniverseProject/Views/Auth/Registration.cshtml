@@ -9,17 +9,21 @@ ViewData["Title"] = "Registration Page";
         <h1 class="registration-heading">Book Universe</h1>
         <p class="registration-subheading">Sign up to create your account.</p>
         <form id="signup-form" asp-action="SignUp" asp-controller="Auth" method="post">
-            <div class="mb-3">
+            <div class="mb-1">
                 <label for="username" class="form-label">Username:</label>
                 <input asp-for="Email" type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter your username" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                 <label for="email" class="form-label">Email:</label>
                 <input asp-for="Email" type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                 <label for="password" class="form-label">Password:</label>
                 <input asp-for="Password" type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter your password" required>
+            </div>
+            <div class="mb-1">
+                <label for="password" class="form-label">Repeat Password:</label>
+                <input type="password" id="repeat-password" name="password" class="form-control form-control-lg" placeholder="Enter your password again" required>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-outline-secondary">Sign Up</button>
@@ -36,7 +40,7 @@ ViewData["Title"] = "Registration Page";
         var password = document.getElementById("password").value.trim();
 
         if (username === "" || email === "" || password === "") {
-            alert("Please fill in all fields.");
+            showModal("Please fill in all fields.");
             return;
         }
 
@@ -44,3 +48,4 @@ ViewData["Title"] = "Registration Page";
     }
 </script>
 
+@Html.Partial("/Views/Shared/ModalWindow.cshtml")
