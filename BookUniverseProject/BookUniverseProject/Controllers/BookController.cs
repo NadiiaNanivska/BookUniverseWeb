@@ -94,9 +94,9 @@ namespace BookUniverseProject.Controllers
             ActionResult<Unit> userBookResult = HandleResult(await Mediator.Send(new CreateUserBookCommand(newUserBook)));
             if (userBookResult.Result is OkObjectResult)
             {
-                return RedirectToAction("BookPage", new { id });
+                return RedirectToAction("BookPage", new { id, added = true });
             }
-            return RedirectToAction("BookPage", new { id });
+            return RedirectToAction("BookPage", new { id, added = false });
         }
 
         private Claim? getUserIdFromCookie()
@@ -162,10 +162,11 @@ namespace BookUniverseProject.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BookPage(int id)
+        public async Task<IActionResult> BookPage(int id, bool? added = null)
         {
             BookDto book = await GetBook(id);
             ViewBag.Book = book;
+            ViewBag.Added = added;
             return View();
         }
 

@@ -35,6 +35,15 @@
 </div>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var added = '@(ViewBag.Added?.ToString().ToLower() ?? "null")';
+        console.log(added)
+        if (added !== "null" && added === "false") {
+            showModal("You have already added this book!");
+        } else if (added !== "null" && added === "true") {
+            showModal("Book is successfully added to your library!");
+        }
+    });
 </script>
 
-
+@Html.Partial("/Views/Shared/ModalWindow.cshtml")

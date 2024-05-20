@@ -8,6 +8,6 @@
 
         public string Password { get; set; }
 
-        public string RepeatPassword { get; set; } = "Nadia123!";
+        public string RepeatPassword { get; set; }
     }
 }

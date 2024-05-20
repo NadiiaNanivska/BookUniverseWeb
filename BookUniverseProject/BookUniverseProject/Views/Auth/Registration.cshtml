@@ -23,10 +23,10 @@ ViewData["Title"] = "Registration Page";
             </div>
             <div class="mb-1">
                 <label for="password" class="form-label">Repeat Password:</label>
-                <input type="password" id="repeat-password" name="password" class="form-control form-control-lg" placeholder="Enter your password again" required>
+                <input asp-for="RepeatPassword" type="password" id="repeat-password" name="password" class="form-control form-control-lg" placeholder="Enter your password again" required>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn btn-outline-secondary">Sign Up</button>
+                <button type="submit" class="btn btn-outline-secondary" onclick="redirectToSignUpPage()">Sign Up</button>
             </div>
         </form>
     </div>
@@ -43,8 +43,6 @@ ViewData["Title"] = "Registration Page";
             showModal("Please fill in all fields.");
             return;
         }
-
-        window.location.href = '@Url.Action("HomePage", "Book")';
     }
 </script>
 
