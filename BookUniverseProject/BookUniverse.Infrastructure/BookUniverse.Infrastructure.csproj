@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+      <PackageReference Include="Google.Apis.Books.v1" Version="1.64.0.2955" />
+      <PackageReference Include="MailKit" Version="4.6.0" />
+      <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.16" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.16">
       <PrivateAssets>all</PrivateAssets>
@@ -23,10 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookUniverse.Domain\BookUniverse.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

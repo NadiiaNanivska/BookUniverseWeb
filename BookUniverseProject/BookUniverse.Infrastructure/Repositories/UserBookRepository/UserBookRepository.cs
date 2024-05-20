@@ -17,5 +17,10 @@ namespace BookUniverse.Infrastructure.Repositories.Implementation.UserBookReposi
             IQueryable<UserBook> query = dbSet;
             return query.Where(filter).Select(ub => ub.Book).ToList();
         }
+
+        public async Task<UserBook> GetByUserIdAndBookIdAsync(string userId, int bookId)
+        {
+            return await Get(ub => ub.UserId == userId && ub.BookId == bookId);
+        }
     }
 }

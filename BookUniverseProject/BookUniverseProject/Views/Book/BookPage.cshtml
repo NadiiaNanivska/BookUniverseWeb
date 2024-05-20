@@ -15,7 +15,13 @@
                         <button id="readBtn" class="btn btn-outline-secondary">Read</button>
                         <button id="folderBtn" class="btn btn-outline-secondary" >Add to Folder</button>
                         <button id="favBtn" class="btn btn-outline-secondary" >Add to Favorites</button>
-                        <button id="librBtn" class="btn btn-outline-secondary" >Add to My Library</button>
+                        <form asp-controller="Book"
+                              asp-action="AddToLibrary"
+                              asp-route-id="@ViewBag.Book.Id" method="post" class="d-inline">
+                        <button class="btn btn-outline-secondary">
+                            Add to My Library
+                        </button>
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -29,6 +35,15 @@
 </div>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var added = '@(ViewBag.Added?.ToString().ToLower() ?? "null")';
+        console.log(added)
+        if (added !== "null" && added === "false") {
+            showModal("You have already added this book!");
+        } else if (added !== "null" && added === "true") {
+            showModal("Book is successfully added to your library!");
+        }
+    });
 </script>
 
-
+@Html.Partial("/Views/Shared/ModalWindow.cshtml")
