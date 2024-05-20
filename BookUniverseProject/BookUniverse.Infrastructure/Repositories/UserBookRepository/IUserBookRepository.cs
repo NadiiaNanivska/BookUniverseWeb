@@ -7,5 +7,6 @@ namespace BookUniverse.Infrastructure.Repositories.Implementation.UserBookReposi
     public interface IUserBookRepository : IRepository<UserBook>
     {
         IEnumerable<Book> GetAllByUser(Expression<Func<UserBook, bool>> filter);
+        Task<UserBook> GetByUserIdAndBookIdAsync(string userId, int bookId);
     }
 }

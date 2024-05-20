@@ -25,5 +25,6 @@ namespace BookUniverse.Domain.Common
         public const string PASSWORD_CRITERIA = "At least 1 uppdercase & lowercase letter and digit";
         public const string PASSWORD_PATTERN = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,15}$";
         public const string NOT_VALID_PASSWORD = "Not valid password.";
+        public const string PASSWORD_DOESNT_MATCH = "The password and confirmation password do not match";
     }
 }

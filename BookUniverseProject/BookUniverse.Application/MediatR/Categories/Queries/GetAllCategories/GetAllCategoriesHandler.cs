@@ -2,6 +2,7 @@
 using BookUniverse.Application.DTOs.BookDTOs;
 using BookUniverse.Application.DTOs.CategoryDTOs;
 using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
+using BookUniverse.Domain.Common;
 using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
 using FluentResults;
@@ -26,8 +27,7 @@ namespace BookUniverse.Application.MediatR.Categories.Queries.GetAllCategories
 
             if (catoegories is null)
             {
-                string errorMsg = "Nothing found in DB";
-                return Result.Fail(new Error(errorMsg));
+                return Result.Fail(new Error(ResponseMessagesConstants.NOTHING_FOUND));
             }
 
             return Result.Ok(_mapper.Map<IEnumerable<CategoryDto>>(catoegories));
