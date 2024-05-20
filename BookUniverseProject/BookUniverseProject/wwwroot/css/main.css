@@ -59,8 +59,8 @@ body {
 }
 
 .registration-heading {
-    font-size: 2rem; 
-    margin-bottom: 1rem; 
+    font-size: 1.75rem; 
+    margin-bottom: 0.5rem; 
     color: black;
     text-align: center;
 }
@@ -128,7 +128,6 @@ body {
 
 .blockquote {
     color: dimgray;
-}
 }
 
 .form-control {
