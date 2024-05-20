@@ -14,15 +14,6 @@ namespace BookUniverse.Web.Extensions
                 protocol: scheme);
         }
 
-        public static string ForgotPasswordLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
-        {
-            return urlHelper.Action(
-                action: nameof(AuthController.ForgotPassword),
-                controller: "Auth",
-                values: new { userId, code },
-                protocol: scheme);
-        }
-
         public static string ResetPasswordCallbackLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
         {
             return urlHelper.Action(
