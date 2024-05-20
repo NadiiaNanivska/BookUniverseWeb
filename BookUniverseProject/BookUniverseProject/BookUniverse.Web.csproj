@@ -45,4 +45,8 @@
     <ProjectReference Include="..\BookUniverse.Infrastructure\BookUniverse.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Book\ReadBookPage.cshtml" />
+  </ItemGroup>
+
 </Project>

@@ -12,7 +12,7 @@
                     <h3 class="author registration-subheading">@ViewBag.Book.Author</h3>
                     <p class="description site-description">@ViewBag.Book.Description</p>
                     <div class="actions">
-                        <button id="readBtn" class="btn btn-outline-secondary">Read</button>
+                        <button id="readBtn" class="btn btn-outline-secondary"  onclick="redirectToReadPage()">Read</button>
                         <button id="folderBtn" class="btn btn-outline-secondary" >Add to Folder</button>
                         <button id="favBtn" class="btn btn-outline-secondary" >Add to Favorites</button>
                         <form asp-controller="Book"
@@ -35,6 +35,13 @@
 </div>
 
 <script>
+    function redirectToReadPage() {
+        const baseUrl = '@Url.Action("ReadBookPage", "Book")';
+        const url = `${baseUrl}/${@ViewBag.Book.Id}`;
+        window.location.href = url;
+    }
+
+
     document.addEventListener("DOMContentLoaded", function () {
         var added = '@(ViewBag.Added?.ToString().ToLower() ?? "null")';
         console.log(added)
