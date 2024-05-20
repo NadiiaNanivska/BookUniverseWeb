@@ -6,11 +6,12 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Зміщує контейнер на половину його власної ширини та висоти */
+    transform: translate(-50%, -50%);
     background-color: rgba(255, 255, 255, 0.7);
     justify-content: center;
     align-items: center;
     bottom: 50rem;
+    border-radius: 0.5rem;
 }
 
     .container .content {
