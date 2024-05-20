@@ -1,15 +1,10 @@
 ﻿using AutoMapper;
 using BookUniverse.Application.DTOs.BookDTOs;
-using BookUniverse.Application.MediatR.Books.Queries.GetAllBooks;
+using BookUniverse.Domain.Common;
 using BookUniverse.Domain.Entities;
 using BookUniverse.Infrastructure.Repositories.Base.UnitOfWork;
 using FluentResults;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory
 {
@@ -30,7 +25,7 @@ namespace BookUniverse.Application.MediatR.Books.Queries.GetAllBooksByCategory
 
             if (filteredBooks is null)
             {
-                return Result.Fail(new Error("Nothing found in DB"));
+                return Result.Fail(new Error(ResponseMessagesConstants.NOTHING_FOUND));
             }
 
             return Result.Ok(_mapper.Map<IEnumerable<BookDto>>(filteredBooks));

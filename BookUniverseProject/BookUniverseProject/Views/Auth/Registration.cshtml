@@ -1,4 +1,6 @@
-﻿@{
+﻿@using BookUniverse.Application.DTOs.UserDTOs;
+@model RegistrationDto
+@{
 ViewData["Title"] = "Registration Page";
 }
 
@@ -6,22 +8,22 @@ ViewData["Title"] = "Registration Page";
     <div class="registration-form">
         <h1 class="registration-heading">Book Universe</h1>
         <p class="registration-subheading">Sign up to create your account.</p>
-        <form id="signup-form" asp-action="HomePage" asp-controller="Book" method="post">
+        <form id="signup-form" asp-action="SignUp" asp-controller="Auth" method="post">
             <div class="mb-1">
                 <label for="username" class="form-label">Username:</label>
-                <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter your username" required>
+                <input asp-for="Email" type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter your username" required>
             </div>
             <div class="mb-1">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+                <input asp-for="Email" type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
             </div>
             <div class="mb-1">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter your password" required>
+                <input asp-for="Password" type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter your password" required>
             </div>
             <div class="mb-1">
                 <label for="password" class="form-label">Repeat Password:</label>
-                <input type="password" id="repeat-password" name="password" class="form-control form-control-lg" placeholder="Enter your password again" required>
+                <input asp-for="RepeatPassword" type="password" id="repeat-password" name="password" class="form-control form-control-lg" placeholder="Enter your password again" required>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-outline-secondary" onclick="redirectToSignUpPage()">Sign Up</button>
@@ -41,8 +43,6 @@ ViewData["Title"] = "Registration Page";
             showModal("Please fill in all fields.");
             return;
         }
-
-        window.location.href = '@Url.Action("HomePage", "Book")';
     }
 </script>
 
