@@ -18,8 +18,15 @@
                         <input asp-for="Email" type="email" class="form-control form-control-lg" placeholder="Email" required>
                     </div>
                 </div>
-                <button class="btn btn-outline-secondary" id="forgotPassBtn">Confirm email</button>
+                <button class="btn btn-outline-secondary" onclick="redirectToConfirmPage()" id="forgotPassBtn">Confirm email</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    function redirectToConfirmPage() {
+        window.location.href = '@Url.Action("ForgotPasswordConfirmation", "Auth")';
+    }
+    
+</script>
